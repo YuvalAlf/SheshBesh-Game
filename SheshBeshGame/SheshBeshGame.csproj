@@ -53,6 +53,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\OptionUtil\NoneOption.cs" />
+    <Compile Include="Utils\OptionUtil\NoneOptionExceptioncs.cs" />
+    <Compile Include="Utils\OptionUtil\Opt.cs" />
+    <Compile Include="Utils\OptionUtil\Option.cs" />
+    <Compile Include="Utils\OptionUtil\SomeOption.cs" />
     <Page Include="AppGui\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameDataTypes\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
