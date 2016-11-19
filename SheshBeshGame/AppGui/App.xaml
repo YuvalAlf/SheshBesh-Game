@@ -1,8 +1,8 @@
-﻿<Application x:Class="SheshBeshGame.App"
+﻿<Application x:Class="SheshBeshGame.AppGui.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SheshBeshGame"
-             StartupUri="MainWindow.xaml">
+             StartupUri="AppGui/MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>
