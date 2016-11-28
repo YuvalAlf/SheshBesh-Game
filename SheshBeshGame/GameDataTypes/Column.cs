@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
-namespace SheshBeshGame.GameDataTypes
+﻿namespace SheshBeshGame.GameDataTypes
 {
     public struct Column
     {
-        public int AmountOfDisks { get; }
-        public GameColor DisksColor { get; }
+        public byte NumOfDisks { get; }
+        public bool IsBlack { get; }
+        public bool IsWhite => !IsBlack;
+        public bool IsEmpty => NumOfDisks == 0;
 
-        public Column(int amountOfDisks, GameColor disksColor)
+        public Column(byte numOfDisks, bool isBlack)
         {
-            Debug.Assert(amountOfDisks >= 0);
-            AmountOfDisks = amountOfDisks;
-            DisksColor = disksColor;
+            NumOfDisks = numOfDisks;
+            IsBlack = isBlack;
         }
 
-        public bool IsEmpty => AmountOfDisks == 0;
-        public static Column Empty => new Column(0, GameColor.Black);
+        public static Column Empty => new Column(0, false);
+        public GameColor Color => IsBlack ? GameColor.Black : GameColor.White;
+
+        public Column AddDisk() => new Column((byte)(NumOfDisks + 1), IsBlack);
+        public Column LessDisk() => new Column((byte)(NumOfDisks - 1), IsBlack);
+        public Column ToColor(GameColor newColor) => new Column(NumOfDisks, newColor == GameColor.Black);
     }
 }

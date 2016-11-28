@@ -1,11 +1,10 @@
 ﻿using System.Windows;
+using System.Windows.Input;
+using Microsoft.Windows.Shell;
 
 namespace SheshBeshGame.AppGui
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    partial class MainWindow : Window
     {
         public MainWindow()
         {

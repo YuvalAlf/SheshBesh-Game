@@ -1,6 +1,6 @@
 ﻿namespace SheshBeshGame.GameDataTypes
 {
-    public enum GameColor
+    public enum GameColor : byte
     {
         White, Black
     }

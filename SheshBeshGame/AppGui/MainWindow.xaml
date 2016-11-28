@@ -3,10 +3,59 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SheshBeshGame"
+        Name="SheshBeshWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        MinHeight="600" Height="600"
+        MinWidth="800" Width="800"
+        Title="">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="SheshBeshTitleTextBlock" Storyboard.TargetProperty="Effect.(DropShadowEffect.BlurRadius)"
+                            From="20" To="30" AutoReverse="True" Duration="0:0:10" RepeatBehavior="Forever"/>
+                        <ColorAnimation Storyboard.TargetName="SheshBeshWindow" Storyboard.TargetProperty="Background.(RadialGradientBrush.GradientStops).[0].Color"
+                             To="#000050" AutoReverse="True" Duration="0:0:10" RepeatBehavior="Forever"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+            <GradientStop Color="DarkBlue" Offset="0"/>
+            <GradientStop Color="DodgerBlue" Offset="0.45"/>
+            <GradientStop Color="LightSkyBlue" Offset="0.75"/>
+            <GradientStop Color="LightBlue" Offset="0.85"/>
+            <GradientStop Color="Azure" Offset="0.95"/>
+            <GradientStop Color="White" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
-        
+        <StackPanel>
+            
+            <TextBlock Name="SheshBeshTitleTextBlock" FontSize="64" HorizontalAlignment="Center" Text="Shesh-Besh" FontFamily="Ravie" FontWeight="Bold">
+                <TextBlock.LayoutTransform>
+                    <RotateTransform Angle="4"></RotateTransform>
+                </TextBlock.LayoutTransform>
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="Black" RenderingBias="Quality" Opacity="75"></DropShadowEffect>
+                </TextBlock.Effect>
+                <TextBlock.Foreground>
+                    <LinearGradientBrush>
+                        <GradientStopCollection>
+                            <GradientStop Offset="0.0" Color="Aquamarine"></GradientStop>
+                            <GradientStop Offset="0.25" Color="Turquoise"></GradientStop>
+                            <GradientStop Offset="0.5" Color="DarkTurquoise"></GradientStop>
+                            <GradientStop Offset="0.75" Color="Aqua"></GradientStop>
+                            <GradientStop Offset="1" Color="Aquamarine"></GradientStop>
+                        </GradientStopCollection>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+                
+            </TextBlock>
+            <Viewbox></Viewbox>
+        </StackPanel>
     </Grid>
 </Window>

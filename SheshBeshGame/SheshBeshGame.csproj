@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,9 +59,22 @@
     </ApplicationDefinition>
     <Compile Include="GameDataTypes\Board.cs" />
     <Compile Include="GameDataTypes\Column.cs" />
-    <Compile Include="GameDataTypes\ColumnChunk.cs" />
-    <Compile Include="GameDataTypes\DiceRollRawResult.cs" />
+    <Compile Include="GameDataTypes\DiceRolls\DiceRoller.cs" />
+    <Compile Include="GameDataTypes\DiceRolls\DiceRollRawResult.cs" />
+    <Compile Include="GameDataTypes\DiceRolls\RandomDiceRoller.cs" />
     <Compile Include="GameDataTypes\GameColor.cs" />
+    <Compile Include="GameDataTypes\GameEngine.cs" />
+    <Compile Include="GameDataTypes\GamePlayer\Player.cs" />
+    <Compile Include="GameDataTypes\GamePlayer\RandomPlayer.cs" />
+    <Compile Include="GameDataTypes\Move\AcquitDisk.cs" />
+    <Compile Include="GameDataTypes\Move\EatDisk.cs" />
+    <Compile Include="GameDataTypes\Move\RemoveEatenDiskEats.cs" />
+    <Compile Include="GameDataTypes\Move\SingleGameMove.cs" />
+    <Compile Include="GameDataTypes\Move\WholeMove.cs" />
+    <Compile Include="GameDataTypes\Move\RegularMove.cs" />
+    <Compile Include="GameDataTypes\Move\RemoveEatenDisk.cs" />
+    <Compile Include="Utils\ArrayExtensions.cs" />
+    <Compile Include="Utils\BoolExtensions.cs" />
     <Compile Include="Utils\IntExtensions.cs" />
     <Compile Include="Utils\OptionUtil\NoneOption.cs" />
     <Compile Include="Utils\OptionUtil\NoneOptionExceptioncs.cs" />
@@ -95,13 +112,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\Window\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
