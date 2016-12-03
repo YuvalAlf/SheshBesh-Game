@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Canvas x:Key="BoardCanvas" Margin="10" Width="200" Height="200">
+        <StaticResource ResourceKey="LeftHalfBoard"/>
+        <StaticResource ResourceKey="RightHalfBoard"/>
+        <StaticResource ResourceKey="UpperLedge"/>
+        <StaticResource ResourceKey="DownLedge"/>
+        
+        <Canvas.CacheMode>
+            <BitmapCache RenderAtScale="3.0"></BitmapCache>
+        </Canvas.CacheMode>
+    </Canvas>
+</ResourceDictionary>

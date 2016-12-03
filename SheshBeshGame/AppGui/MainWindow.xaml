@@ -17,9 +17,11 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid>
-        <StackPanel>
-            <TextBlock Name="SheshBeshTitleTextBlock" Style="{StaticResource TitleStyle}" FontSize="64" Text="Shesh-Besh"/>
-            <Viewbox></Viewbox>
-        </StackPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" Name="SheshBeshTitleTextBlock" Style="{StaticResource TitleStyle}" FontSize="64" Text="Shesh-Besh"/>
+            <Viewbox Stretch="Uniform">
+                <StaticResource ResourceKey="BoardCanvas"/>
+            </Viewbox>
+        </DockPanel>
     </Grid>
 </Window>

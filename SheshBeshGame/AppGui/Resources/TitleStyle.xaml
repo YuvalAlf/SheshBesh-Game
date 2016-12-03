@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:SheshBeshGame.AppGui.Resources">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="TitleStyle" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Ravie"/>
@@ -21,7 +20,7 @@
                     <GradientStopCollection>
                         <GradientStop Offset="0.0" Color="Aquamarine"></GradientStop>
                         <GradientStop Offset="0.25" Color="Turquoise"></GradientStop>
-                        <GradientStop Offset="0.5" Color="DarkTurquoise"></GradientStop>
+                        <GradientStop Offset="0.5" Color="#FF8EE2F5"></GradientStop>
                         <GradientStop Offset="0.75" Color="Aqua"></GradientStop>
                         <GradientStop Offset="1" Color="Aquamarine"></GradientStop>
                     </GradientStopCollection>
