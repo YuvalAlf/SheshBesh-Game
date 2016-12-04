@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DoubleAnimation x:Key="RotationAnimation" From="0" To="360" Duration="0:0:0.021" RepeatBehavior="Forever"/>
+    
+    <Vector3DAnimationUsingKeyFrames x:Key="AxisVectorRotationAnimation1" AutoReverse="True" RepeatBehavior="Forever">
+        <Vector3DAnimationUsingKeyFrames.KeyFrames>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:0">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="1" Y="1" Z="0"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:1">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="0" Y="-1" Z="1"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:2">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="-1" Y="-1" Z="0"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:3">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="0" Y="-1" Z="-1"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+        </Vector3DAnimationUsingKeyFrames.KeyFrames>
+    </Vector3DAnimationUsingKeyFrames>
+    
+    <Vector3DAnimationUsingKeyFrames x:Key="AxisVectorRotationAnimation2" AutoReverse="True" RepeatBehavior="Forever">
+        <Vector3DAnimationUsingKeyFrames.KeyFrames>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:0">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="1" Y="-1" Z="0"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:0.6">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="0" Y="-1" Z="1"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:1.2">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="-1" Y="0" Z="-1"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+            
+            <LinearVector3DKeyFrame KeyTime="0:0:1.8">
+                <LinearVector3DKeyFrame.Value>
+                    <Vector3D X="0" Y="-1" Z="-1"/>
+                </LinearVector3DKeyFrame.Value>
+            </LinearVector3DKeyFrame>
+        </Vector3DAnimationUsingKeyFrames.KeyFrames>
+    </Vector3DAnimationUsingKeyFrames>
+</ResourceDictionary>

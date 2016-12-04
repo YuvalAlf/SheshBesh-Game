@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Viewport3D" x:Key="Viewport3DStyle">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Camera">
+            <Setter.Value>
+                <PerspectiveCamera Position="2, 3, 3" LookDirection="-2, -2, -2"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <LinearGradientBrush x:Key="WhiteBrush3DFarward">
+        <GradientStop Color="#F2F2F2" Offset="0.0"/>
+        <GradientStop Color="#A2A2A2" Offset="1.0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="WhiteBrush3DBackward">
+        <GradientStop Color="#F2F2F2" Offset="1.0"/>
+        <GradientStop Color="#A2A2A2" Offset="0.0"/>
+    </LinearGradientBrush>
+    <DrawingBrush x:Key="WhiteDiskBrush">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Geometry="{StaticResource InnerCircleGeometry}" Brush="{StaticResource WhiteBrush3DFarward}"/>
+                <GeometryDrawing Geometry="{StaticResource OuterCircleGeometry}" Brush="{StaticResource WhiteBrush3DBackward}"/>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+    
+</ResourceDictionary>
