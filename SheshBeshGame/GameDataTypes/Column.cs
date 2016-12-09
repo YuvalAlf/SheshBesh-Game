@@ -1,4 +1,7 @@
-﻿namespace SheshBeshGame.GameDataTypes
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace SheshBeshGame.GameDataTypes
 {
     public struct Column
     {
@@ -19,5 +22,7 @@
         public Column AddDisk() => new Column((byte)(NumOfDisks + 1), IsBlack);
         public Column LessDisk() => new Column((byte)(NumOfDisks - 1), IsBlack);
         public Column ToColor(GameColor newColor) => new Column(NumOfDisks, newColor == GameColor.Black);
+
+        public static IEnumerable<int> All => Enumerable.Range(0, 24);
     }
 }

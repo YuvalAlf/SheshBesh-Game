@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="AppGui\VisualDisk\DiskElement.cs" />
     <Compile Include="AppGui\VisualDisk\BlackDiskElement.cs" />
+    <Compile Include="AppGui\VisualDisk\VisualDiskBoard.cs" />
     <Compile Include="AppGui\VisualDisk\WhiteDiskElement.cs" />
     <Compile Include="GameDataTypes\Board.cs" />
     <Compile Include="GameDataTypes\Column.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Utils\ApplicationExtensions.cs" />
     <Compile Include="Utils\ArrayExtensions.cs" />
     <Compile Include="Utils\BoolExtensions.cs" />
+    <Compile Include="Utils\CanvasPosition.cs" />
+    <Compile Include="Utils\EnumrableExtensions.cs" />
     <Compile Include="Utils\IntExtensions.cs" />
     <Compile Include="Utils\OptionUtil\NoneOption.cs" />
     <Compile Include="Utils\OptionUtil\NoneOptionExceptioncs.cs" />

@@ -13,9 +13,5 @@ namespace SheshBeshGame.Utils
         {
             return @this.Clone() as T[];
         }
-        public static IEnumerable<T> AsEnumerable<T>(this T @this)
-        {
-            yield return @this;
-        }
     }
 }

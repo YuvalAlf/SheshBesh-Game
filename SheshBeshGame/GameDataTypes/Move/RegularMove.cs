@@ -4,14 +4,9 @@ namespace SheshBeshGame.GameDataTypes.Move
 {
     public sealed class RegularMove : SingleGameMove
     {
-        public int SourceColumn { get; }
-        public int DestinationColumn { get; }
-
         public RegularMove(int sourceColumn, int destinationColumn)
-        {
-            SourceColumn = sourceColumn;
-            DestinationColumn = destinationColumn;
-        }
+            : base(sourceColumn, destinationColumn)
+        { }
 
         public override Board DoMove(Board board)
         {

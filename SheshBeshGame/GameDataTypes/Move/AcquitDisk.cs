@@ -8,12 +8,10 @@ namespace SheshBeshGame.GameDataTypes.Move
 {
     public sealed class AcquitDisk : SingleGameMove
     {
-        public int SourceColumn { get; }
 
         public AcquitDisk(int sourceColumn)
-        {
-            SourceColumn = sourceColumn;
-        }
+            : base(sourceColumn, FinishedColumn)
+        { }
 
         public override Board DoMove(Board board)
         {

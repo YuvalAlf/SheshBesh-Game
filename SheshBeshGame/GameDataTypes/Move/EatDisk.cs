@@ -4,14 +4,10 @@ namespace SheshBeshGame.GameDataTypes.Move
 {
     public sealed class EatDisk : SingleGameMove
     {
-        public int SourceColumn { get; }
-        public int DestinationColumn { get; }
-
         public EatDisk(int sourceColumn, int destinationColumn)
-        {
-            SourceColumn = sourceColumn;
-            DestinationColumn = destinationColumn;
-        }
+            : base(sourceColumn, destinationColumn)
+        { }
+
         public override Board DoMove(Board board)
         {
             var newColumns = board.columns.Copy();

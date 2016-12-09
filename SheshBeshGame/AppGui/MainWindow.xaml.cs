@@ -6,39 +6,32 @@ using System.Windows.Input;
 using Microsoft.Windows.Shell;
 using SheshBeshGame.AppGui.VisualDisk;
 using SheshBeshGame.GameDataTypes;
+using SheshBeshGame.GameDataTypes.DiceRolls;
+using SheshBeshGame.GameDataTypes.Move;
 using SheshBeshGame.Utils;
 
 namespace SheshBeshGame.AppGui
 {
     partial class MainWindow : Window
     {
-        private Random rnd { get; } = new Random();
-        private DiskElement[] disks { get; }
-        private Board boardState { get; set; }
+        private Random Rnd { get; } = new Random();
+        private VisualDiskBoard DisksVisualState { get; } = new VisualDiskBoard();
+        private Board BoardState { get; set; } = Board.StartingBoard;
 
         private int Cube1Result => int.Parse(Cube1Num.Text);
         private int Cube2Result => int.Parse(Cube2Num.Text);
+        private DiceRollRawResult DiceRoll => new DiceRollRawResult(Cube1Result, Cube2Result);
+        private GameColor CurrentPlayer { get; set; } = GameColor.White;
 
-        private int GetNumOfDisksAtColumn(int column) => disks.Count(d => d.Column == column);
+
         public MainWindow()
         {
             InitializeComponent();
             this.CubesViewport.MouseLeftButtonDown += OnViewport3DMouseLeftButtonDown;
             this.CubesViewport.MouseLeftButtonUp += OnViewport3DMouseLeftButtonUp;
-            this.boardState = Board.StartingBoard;
-            this.disks = new DiskElement[0];
 
-            for (int columnIndex = 0; columnIndex < 24; columnIndex++)
-            {
-                var column = boardState.columns[columnIndex];
-                foreach (var _ in Enumerable.Repeat(0, column.NumOfDisks))
-                {
-                    var d = DiskElement.Create(column.Color, GetNumOfDisksAtColumn);
-                    MainCanvas.Children.Add(d);
-                    d.Column = columnIndex;
-                    disks = disks.Concat(d.AsEnumerable()).ToArray();
-                }
-            }
+            DisksVisualState.ApplyBoard(BoardState, MainCanvas);
+
             this.CubesViewport.IsEnabled = true;
         }
 
@@ -47,13 +40,18 @@ namespace SheshBeshGame.AppGui
             CubesViewport.CaptureMouse();
         }
 
+
+
         private void OnViewport3DMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             CubesViewport.ReleaseMouseCapture();
-            Cube1Num.Text = rnd.Next(1, 7).ToString();
-            Cube2Num.Text = rnd.Next(1, 7).ToString();
 
-            // TODO: columns available for playing...
+            Cube1Num.Text = Rnd.Next(1, 7).ToString();
+            Cube2Num.Text = Rnd.Next(1, 7).ToString();
+
+          //  WholeMove[] moveOptions = this.BoardState.MoveOptions(DiceRoll, CurrentPlayer).ToArray();
+           // int[] optionalColumns = moveOptions.Select(m => m.Moves[0].SourceColumn).ToArray();
+           // Disks.Where(d => optionalColumns.Contains(d.Column));
         }
     }
 }

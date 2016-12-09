@@ -8,12 +8,9 @@ namespace SheshBeshGame.GameDataTypes.Move
 {
     class RemoveEatenDiskEats : SingleGameMove
     {
-        public int DestinationColumn { get; }
-
         public RemoveEatenDiskEats(int destinationColumn)
-        {
-            DestinationColumn = destinationColumn;
-        }
+            : base(EatenColumn, destinationColumn)
+        { }
 
         public override Board DoMove(Board board)
         {
