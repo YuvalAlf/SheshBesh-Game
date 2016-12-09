@@ -20,58 +20,73 @@
         <DockPanel>
             <TextBlock DockPanel.Dock="Top" Name="SheshBeshTitleTextBlock" Style="{StaticResource TitleStyle}" FontSize="64" Text="Shesh-Besh"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Viewport3D Style="{StaticResource Viewport3DStyle}" VerticalAlignment="Center" Name="CubesViewport">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Viewport3D VerticalAlignment="Center" Name="CubesViewport" IsEnabled="False">
+                    <Viewport3D.Style>
+                        <Style TargetType="Viewport3D" BasedOn="{StaticResource Viewport3DStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard Name="GlowBeginStoryboard">
+                                            <Storyboard TargetProperty="(Viewport3D.Effect).(DropShadowEffect.BlurRadius)">
+                                                <DoubleAnimation From="20" To="50" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <PowerEase Power="2" EasingMode="EaseInOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Trigger.EnterActions>
+                                        <RemoveStoryboard BeginStoryboardName="GlowBeginStoryboard"/>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                                <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                    <RemoveStoryboard BeginStoryboardName="GlowBeginStoryboard"/>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Viewport3D.Style>
                     <StaticResource ResourceKey="Light3D"/>
                     <StaticResource ResourceKey="CubeOne"/>
                     <StaticResource ResourceKey="CubeTwo"/>
 
                     <Viewport3D.Effect>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="0" RenderingBias="Quality"/>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="0" Opacity="1.0" Color="#FF341808" RenderingBias="Performance"/>
                     </Viewport3D.Effect>
                     <Viewport3D.Triggers>
-                        <EventTrigger RoutedEvent="Viewport3D.MouseDown">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard Name="RotateCube1">
-                                    <Storyboard DesiredFrameRate="30" TargetName="CubesViewport" TargetProperty="Children[1].(ModelVisual3D.Transform).(RotateTransform3D.Rotation).(AxisAngleRotation3D.Axis)">
-                                        <StaticResource ResourceKey="AxisVectorRotationAnimation1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                                    <BeginStoryboard Name="RotateCube2">
-                                    <Storyboard DesiredFrameRate="30" TargetName="CubesViewport" TargetProperty="Children[1].(ModelVisual3D.Transform).(RotateTransform3D.Rotation).(AxisAngleRotation3D.Angle)">
-                                        <StaticResource ResourceKey="RotationAnimation"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                                <BeginStoryboard Name="RotateCube1Axis">
-                                    <Storyboard DesiredFrameRate="30" TargetName="CubesViewport" TargetProperty="Children[2].(ModelVisual3D.Transform).(Transform3DGroup.Children).[0].(RotateTransform3D.Rotation).(AxisAngleRotation3D.Axis)">
-                                        <StaticResource ResourceKey="AxisVectorRotationAnimation2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                                <BeginStoryboard Name="RotateCube2Axis">
-                                    <Storyboard DesiredFrameRate="30" TargetName="CubesViewport" TargetProperty="Children[2].(ModelVisual3D.Transform).(Transform3DGroup.Children).[0].(RotateTransform3D.Rotation).(AxisAngleRotation3D.Angle)">
-                                        <StaticResource ResourceKey="RotationAnimation"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
+                        <EventTrigger RoutedEvent="Viewport3D.MouseLeftButtonDown">
+                            <BeginStoryboard Name="RotateCube1" Storyboard="{StaticResource RotateCube1Storyboard}"/>
+                            <BeginStoryboard Name="RotateCube2" Storyboard="{StaticResource RotateCube2Storyboard}"/>
+                            <BeginStoryboard Name="RotateCube1Axis" Storyboard="{StaticResource RotateCube1AxisStoryboard}"/>
+                            <BeginStoryboard Name="RotateCube2Axis" Storyboard="{StaticResource RotateCube2AxisStoryboard}"/>
                         </EventTrigger>
-                       <EventTrigger RoutedEvent="Viewport3D.MouseUp">
+                        <EventTrigger RoutedEvent="Viewport3D.MouseLeftButtonUp">
                             <PauseStoryboard BeginStoryboardName="RotateCube1"/>
                             <PauseStoryboard BeginStoryboardName="RotateCube1Axis"/>
                             <PauseStoryboard BeginStoryboardName="RotateCube2"/>
                             <PauseStoryboard BeginStoryboardName="RotateCube2Axis"/>
-                       </EventTrigger> 
+                        </EventTrigger>
                     </Viewport3D.Triggers>
-                    
                 </Viewport3D>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0"  HorizontalAlignment="Center">
+                        <TextBlock Name="Cube1Num" FontFamily="Arial" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Text="5" Margin="2"/>
+                        <TextBlock FontFamily="Arial" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Text="       " Margin="2"/>
+                        <TextBlock Name="Cube2Num" FontFamily="Arial" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Text="1" Margin="2"/>
+                    </StackPanel>
+                </StackPanel>
                 <Viewbox Stretch="Uniform">
-                    <Canvas Width="220" Height="220">
+                    <Canvas Width="200" Height="200" Name="MainCanvas" Margin="10">
                         <StaticResource ResourceKey="BoardCanvas"/>
-                        <Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="15" Canvas.Left="15"/>
+                        <!--<Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="15" Canvas.Left="15"/>
                         <Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="30" Canvas.Left="15"/>
                         <Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="45" Canvas.Left="15"/>
                         <Ellipse Style="{StaticResource BlackDiskStyle}" Canvas.Top="60" Canvas.Left="15"/>
                         <Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="75" Canvas.Left="15"/>
                         <Ellipse Style="{StaticResource BlackDiskStyle}" Canvas.Top="22.5" Canvas.Left="15"/>
-                        <Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="37.5" Canvas.Left="15"/>
+                        <Ellipse Style="{StaticResource WhiteDiskStyle}" Canvas.Top="37.5" Canvas.Left="15"/>-->
                     </Canvas>
                 </Viewbox>
             </StackPanel>

@@ -24,10 +24,11 @@
                 <ResourceDictionary Source="/AppGui/Resources/Cubes/Light3D.xaml"/>
                 <ResourceDictionary Source="/AppGui/Resources/Cubes/Cubes.xaml"/>
                 <ResourceDictionary Source="/AppGui/Resources/Cubes/CubeAnimations.xaml"/>
-                <ResourceDictionary Source="/AppGui/Resources/Disks/DiskGeometry.xaml"/>
-                <ResourceDictionary Source="/AppGui/Resources/Disks/BlackDiskBrush.xaml"/>
-                <ResourceDictionary Source="/AppGui/Resources/Disks/WhiteDiskBrush.xaml"/>
-                <ResourceDictionary Source="/AppGui/Resources/Disks/DisksStyles.xaml"/>
+                <ResourceDictionary Source="/AppGui/Resources/Cubes/Triggers/MouseUpDown.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/DisksStyles.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/DiskGeometry.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/BlackDiskBrush.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/WhiteDiskBrush.xaml"/>
              </ResourceDictionary.MergedDictionaries>
          </ResourceDictionary>
     </Application.Resources>

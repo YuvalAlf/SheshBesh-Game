@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SheshBeshGame.Utils
 {
@@ -11,6 +12,10 @@ namespace SheshBeshGame.Utils
         public static T[] Copy<T>(this T[] @this)
         {
             return @this.Clone() as T[];
+        }
+        public static IEnumerable<T> AsEnumerable<T>(this T @this)
+        {
+            yield return @this;
         }
     }
 }

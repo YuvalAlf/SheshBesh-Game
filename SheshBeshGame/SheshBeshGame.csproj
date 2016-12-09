@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppGui\VisualDisk\DiskElement.cs" />
+    <Compile Include="AppGui\VisualDisk\BlackDiskElement.cs" />
+    <Compile Include="AppGui\VisualDisk\WhiteDiskElement.cs" />
     <Compile Include="GameDataTypes\Board.cs" />
     <Compile Include="GameDataTypes\Column.cs" />
     <Compile Include="GameDataTypes\DiceRolls\DiceRoller.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="GameDataTypes\Move\WholeMove.cs" />
     <Compile Include="GameDataTypes\Move\RegularMove.cs" />
     <Compile Include="GameDataTypes\Move\RemoveEatenDisk.cs" />
+    <Compile Include="Utils\ApplicationExtensions.cs" />
     <Compile Include="Utils\ArrayExtensions.cs" />
     <Compile Include="Utils\BoolExtensions.cs" />
     <Compile Include="Utils\IntExtensions.cs" />
@@ -157,19 +161,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Disks\BlackDiskBrush.xaml">
+    <Page Include="AppGui\Resources\Cubes\Triggers\MouseUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Disks\DiskGeometry.xaml">
+    <Page Include="AppGui\VisualDisk\DiskGeometry\BlackDiskBrush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Disks\DisksStyles.xaml">
+    <Page Include="AppGui\VisualDisk\DiskGeometry\DiskGeometry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Disks\WhiteDiskBrush.xaml">
+    <Page Include="AppGui\VisualDisk\DiskGeometry\DisksStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppGui\VisualDisk\DiskGeometry\WhiteDiskBrush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

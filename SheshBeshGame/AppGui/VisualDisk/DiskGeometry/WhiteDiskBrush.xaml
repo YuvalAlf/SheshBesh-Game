@@ -12,8 +12,8 @@
     <DrawingBrush x:Key="WhiteDiskBrush">
         <DrawingBrush.Drawing>
             <DrawingGroup>
-                <GeometryDrawing Geometry="{StaticResource InnerCircleGeometry}" Brush="{StaticResource WhiteBrush3DFarward}"/>
                 <GeometryDrawing Geometry="{StaticResource OuterCircleGeometry}" Brush="{StaticResource WhiteBrush3DBackward}"/>
+                <GeometryDrawing Geometry="{StaticResource InnerCircleGeometry}" Brush="{StaticResource WhiteBrush3DFarward}"/>
             </DrawingGroup>
         </DrawingBrush.Drawing>
     </DrawingBrush>
