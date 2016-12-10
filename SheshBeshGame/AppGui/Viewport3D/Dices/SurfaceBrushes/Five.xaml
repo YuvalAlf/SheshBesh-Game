@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DiffuseMaterial x:Key="FiveMaterial">
+        <DiffuseMaterial.Brush>
+            <DrawingBrush>
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <StaticResource ResourceKey="BackgroundRectGeometry"/>
+                        <DrawingGroup>
+                            <DrawingGroup.Transform>
+                                <TranslateTransform X="0.2" Y="0.2"/>
+                            </DrawingGroup.Transform>
+                            <StaticResource ResourceKey="DicesNumberCircleGeometry"/>
+                        </DrawingGroup>
+                        <DrawingGroup>
+                            <DrawingGroup.Transform>
+                                <TranslateTransform X="0.5" Y="0.5"/>
+                            </DrawingGroup.Transform>
+                            <StaticResource ResourceKey="DicesNumberCircleGeometry"/>
+                        </DrawingGroup>
+                        <DrawingGroup>
+                            <DrawingGroup.Transform>
+                                <TranslateTransform X="0.8" Y="0.8"/>
+                            </DrawingGroup.Transform>
+                            <StaticResource ResourceKey="DicesNumberCircleGeometry"/>
+                        </DrawingGroup>
+                        <DrawingGroup>
+                            <DrawingGroup.Transform>
+                                <TranslateTransform X="0.2" Y="0.8"/>
+                            </DrawingGroup.Transform>
+                            <StaticResource ResourceKey="DicesNumberCircleGeometry"/>
+                        </DrawingGroup>
+                        <DrawingGroup>
+                            <DrawingGroup.Transform>
+                                <TranslateTransform X="0.8" Y="0.2"/>
+                            </DrawingGroup.Transform>
+                            <StaticResource ResourceKey="DicesNumberCircleGeometry"/>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </DiffuseMaterial.Brush>
+    </DiffuseMaterial>
+    <MeshGeometry3D x:Key="FiveGeometry" TriangleIndices="1,3,0 2,0,3">
+        <MeshGeometry3D.Positions>
+            <Point3D X="0" Y="0" Z="0"/>
+            <Point3D X="0" Y="1" Z="0"/>
+            <Point3D X="1" Y="0" Z="0"/>
+            <Point3D X="1" Y="1" Z="0"/>
+        </MeshGeometry3D.Positions>
+        <MeshGeometry3D.TextureCoordinates>
+            <Point X="0" Y="0"/>
+            <Point X="0" Y="1"/>
+            <Point X="1" Y="0"/>
+            <Point X="1" Y="1"/>
+        </MeshGeometry3D.TextureCoordinates>
+    </MeshGeometry3D>
+    <GeometryModel3D x:Key="FiveSurface" Geometry="{StaticResource FiveGeometry}" Material="{StaticResource FiveMaterial}"/>
+</ResourceDictionary>

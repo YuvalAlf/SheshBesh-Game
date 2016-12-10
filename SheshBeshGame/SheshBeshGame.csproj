@@ -53,7 +53,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="AppGui\App.xaml">
+    <ApplicationDefinition Include="AppGui\Application\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
@@ -61,12 +61,12 @@
     <Compile Include="AppGui\VisualDisk\BlackDiskElement.cs" />
     <Compile Include="AppGui\VisualDisk\VisualDiskBoard.cs" />
     <Compile Include="AppGui\VisualDisk\WhiteDiskElement.cs" />
-    <Compile Include="GameDataTypes\Board.cs" />
-    <Compile Include="GameDataTypes\Column.cs" />
+    <Compile Include="GameDataTypes\SheshBeshBoard\BoardState.cs" />
+    <Compile Include="GameDataTypes\SheshBeshBoard\Column.cs" />
     <Compile Include="GameDataTypes\DiceRolls\DiceRoller.cs" />
     <Compile Include="GameDataTypes\DiceRolls\DiceRollRawResult.cs" />
     <Compile Include="GameDataTypes\DiceRolls\RandomDiceRoller.cs" />
-    <Compile Include="GameDataTypes\GameColor.cs" />
+    <Compile Include="GameDataTypes\GamePlayer\GameColor.cs" />
     <Compile Include="GameDataTypes\GameEngine.cs" />
     <Compile Include="GameDataTypes\GamePlayer\Player.cs" />
     <Compile Include="GameDataTypes\GamePlayer\RandomPlayer.cs" />
@@ -77,94 +77,107 @@
     <Compile Include="GameDataTypes\Move\WholeMove.cs" />
     <Compile Include="GameDataTypes\Move\RegularMove.cs" />
     <Compile Include="GameDataTypes\Move\RemoveEatenDisk.cs" />
-    <Compile Include="Utils\ApplicationExtensions.cs" />
-    <Compile Include="Utils\ArrayExtensions.cs" />
-    <Compile Include="Utils\BoolExtensions.cs" />
-    <Compile Include="Utils\CanvasPosition.cs" />
-    <Compile Include="Utils\EnumrableExtensions.cs" />
-    <Compile Include="Utils\IntExtensions.cs" />
+    <Compile Include="Utils\GuiUtils\ApplicationExtensions.cs" />
+    <Compile Include="Utils\DataTypesUtils\ArrayExtensions.cs" />
+    <Compile Include="Utils\DataTypesUtils\BoolExtensions.cs" />
+    <Compile Include="Utils\GuiUtils\CanvasPosition.cs" />
+    <Compile Include="Utils\DataTypesUtils\EnumrableExtensions.cs" />
+    <Compile Include="Utils\DataTypesUtils\IntExtensions.cs" />
+    <Compile Include="Utils\Math\ValueNormalization.cs" />
     <Compile Include="Utils\OptionUtil\NoneOption.cs" />
     <Compile Include="Utils\OptionUtil\NoneOptionExceptioncs.cs" />
     <Compile Include="Utils\OptionUtil\Opt.cs" />
     <Compile Include="Utils\OptionUtil\Option.cs" />
     <Compile Include="Utils\OptionUtil\SomeOption.cs" />
-    <Page Include="AppGui\MainWindow.xaml">
+    <Page Include="AppGui\Application\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AppGui\App.xaml.cs">
+    <Compile Include="AppGui\Application\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AppGui\MainWindow.xaml.cs">
+    <Compile Include="AppGui\Application\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="AppGui\Resources\BackgroundBrush.xaml">
+    <Page Include="AppGui\Window\WindowBackgroundBrush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Board\BoardCanvas.xaml">
+    <Page Include="AppGui\Board\BoardCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Board\HalfBoardCanvas.xaml">
+    <Page Include="AppGui\Board\HalfBoardCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Board\BoardWood.xaml">
+    <Page Include="AppGui\Board\BoardWood.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Board\Ledges.xaml">
+    <Page Include="AppGui\Board\Ledges.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Board\Triangles.xaml">
+    <Page Include="AppGui\Board\Triangles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\CubeAnimations.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\DicesAnimations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\Cubes.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\Dices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\Light3D.xaml">
+    <Page Include="AppGui\Viewport3D\DiceRollValuesDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\Colors.xaml">
+    <Page Include="AppGui\Viewport3D\DicesViewport3D.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\Five.xaml">
+    <Page Include="AppGui\Viewport3D\Light3D.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\Four.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\One.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\Five.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\Six.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\Four.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\Three.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\One.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\SurfaceBrushes\Two.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\Six.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\Cubes\Triggers\MouseUpDown.xaml">
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\Three.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppGui\Viewport3D\Dices\SurfaceBrushes\Two.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppGui\Viewport3D\Dices\Triggers\MouseUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppGui\Viewport3D\ViewportGlowAnimation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\VisualDisk\DiskGeometry\DisksStyles.xaml">
+    <Page Include="AppGui\VisualDisk\DiskGeometry\DiskStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,15 +197,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\InfiniteAnimations.xaml">
+    <Page Include="AppGui\Window\TitleStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppGui\Resources\TitleStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AppGui\Resources\Viewport3DStyle.xaml">
+    <Page Include="AppGui\Viewport3D\Viewport3DStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,9 +231,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Window\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Storyboard x:Key="RotateDice1Storyboard" DesiredFrameRate="25" TargetProperty="Children[1].(ModelVisual3D.Transform).(RotateTransform3D.Rotation).(AxisAngleRotation3D.Axis)">
+        <StaticResource ResourceKey="AxisVectorRotationAnimation1"/>
+    </Storyboard>
+
+    <Storyboard x:Key="RotateDice2Storyboard" DesiredFrameRate="25" TargetProperty="Children[1].(ModelVisual3D.Transform).(RotateTransform3D.Rotation).(AxisAngleRotation3D.Angle)">
+        <StaticResource ResourceKey="RotationAnimation"/>
+    </Storyboard>
+
+    <Storyboard x:Key="RotateDice1AxisStoryboard" DesiredFrameRate="25" TargetProperty="Children[2].(ModelVisual3D.Transform).(Transform3DGroup.Children).[0].(RotateTransform3D.Rotation).(AxisAngleRotation3D.Axis)">
+        <StaticResource ResourceKey="AxisVectorRotationAnimation2"/>
+    </Storyboard>
+
+    <Storyboard x:Key="RotateDice2AxisStoryboard" DesiredFrameRate="25" TargetProperty="Children[2].(ModelVisual3D.Transform).(Transform3DGroup.Children).[0].(RotateTransform3D.Rotation).(AxisAngleRotation3D.Angle)">
+        <StaticResource ResourceKey="RotationAnimation"/>
+    </Storyboard>
+</ResourceDictionary>

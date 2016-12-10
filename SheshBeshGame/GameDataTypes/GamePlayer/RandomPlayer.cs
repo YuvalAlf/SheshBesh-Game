@@ -1,6 +1,7 @@
 ﻿using System;
 using SheshBeshGame.GameDataTypes.Move;
-using SheshBeshGame.Utils;
+using SheshBeshGame.GameDataTypes.SheshBeshBoard;
+using SheshBeshGame.Utils.DataTypesUtils;
 
 namespace SheshBeshGame.GameDataTypes.GamePlayer
 {
@@ -13,7 +14,7 @@ namespace SheshBeshGame.GameDataTypes.GamePlayer
             Rnd = rnd;
         }
 
-        public override SingleGameMove ChooseMove(Board board, GameColor player, SingleGameMove[] moves)
+        public override SingleGameMove ChooseMove(BoardState boardState, GameColor player, SingleGameMove[] moves)
         {
             return moves.ChooseRandomly(Rnd);
         }

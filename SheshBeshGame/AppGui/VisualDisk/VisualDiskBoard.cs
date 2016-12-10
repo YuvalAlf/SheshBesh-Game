@@ -6,7 +6,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Controls;
 using SheshBeshGame.GameDataTypes;
+using SheshBeshGame.GameDataTypes.GamePlayer;
+using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 using SheshBeshGame.Utils;
+using SheshBeshGame.Utils.GuiUtils;
+using SheshBeshGame.Utils.Math;
+using static SheshBeshGame.Utils.Math.ValueNormalization;
 
 namespace SheshBeshGame.AppGui.VisualDisk
 {
@@ -27,12 +32,12 @@ namespace SheshBeshGame.AppGui.VisualDisk
             EatenWhites = new LinkedList<DiskElement>();
         }
 
-        public void ApplyBoard(Board board, Canvas canvas)
+        public void ApplyBoard(BoardState boardState, Canvas canvas)
         {
             this.Canvas = canvas;
             foreach (int columnIndex in Column.All)
             {
-                var column = board.columns[columnIndex];
+                var column = boardState.columns[columnIndex];
                 for (int i = 0; i < column.NumOfDisks; i++)
                 {
                     var disk = DiskElement.Create(column.Color);
@@ -40,13 +45,13 @@ namespace SheshBeshGame.AppGui.VisualDisk
                     canvas.Children.Add(disk);
                 }
             }
-            for (int i = 0; i < board.eatenBlacks; i++)
+            for (int i = 0; i < boardState.eatenBlacks; i++)
             {
                 var disk = DiskElement.Create(GameColor.Black);
                 this.AddDiskToBlackEatens(disk);
                 canvas.Children.Add(disk);
             }
-            for (int i = 0; i < board.eatenWhites; i++)
+            for (int i = 0; i < boardState.eatenWhites; i++)
             {
                 var disk = DiskElement.Create(GameColor.White);
                 this.AddDiskToWhiteEatens(disk);
@@ -55,13 +60,10 @@ namespace SheshBeshGame.AppGui.VisualDisk
 
         }
 
+        private readonly ValueNormalization disksColumNormalization =
+            new ValueNormalization(new ValueMapping(95, 10), new ValueMapping(85, 15), new ValueMapping(90, 5));
         private void AddDiskToColumn(int columnIndex, DiskElement disk)
         {
-            CanvasPosition.Normalization normalization = new CanvasPosition.Normalization();
-            normalization.Add(95, 10);
-            normalization.Add(85, 15);
-            normalization.Add(90, 5);
-
             if (this.DisksAtColumn[columnIndex].Count == 0)
                 disk.CanvasPosition = InitialCanvasPosition(columnIndex);
             else
@@ -70,7 +72,7 @@ namespace SheshBeshGame.AppGui.VisualDisk
                     .First()
                     .CanvasPosition
                     .AddVertical(15)
-                    .NormalizeVertically(normalization);
+                    .NormalizeVertically(disksColumNormalization);
             this.DisksAtColumn[columnIndex].AddFirst(disk);
         }
 
@@ -99,38 +101,31 @@ namespace SheshBeshGame.AppGui.VisualDisk
             return CanvasPosition.CreateBottomLeft(5, 5 + (23 - columnIndex)*15);
         }
 
+        private readonly ValueNormalization eatensColumNormalization =
+            new ValueNormalization(new ValueMapping(40, 80), new ValueMapping(45, 75), new ValueMapping(35, 85));
+
         private void AddDiskToBlackEatens(DiskElement disk)
         {
-            CanvasPosition.Normalization normalization = new CanvasPosition.Normalization();
-            normalization.Add(40, 80);
-            normalization.Add(45, 75);
-            normalization.Add(35, 85);
-
             var position = CanvasPosition.CreateTopLeft(85, 92.5);
             if (EatenBlacks.Count > 0)
                 position =
                     EatenBlacks.First()
                     .CanvasPosition
                     .AddVertical(-15)
-                    .NormalizeVertically(normalization);
+                    .NormalizeVertically(eatensColumNormalization);
             disk.CanvasPosition = position;
             EatenBlacks.AddFirst(disk);
         }
 
         private void AddDiskToWhiteEatens(DiskElement disk)
         {
-            CanvasPosition.Normalization normalization = new CanvasPosition.Normalization();
-            normalization.Add(40, 80);
-            normalization.Add(45, 75);
-            normalization.Add(35, 85);
-
             var position = CanvasPosition.CreateBottomLeft(85, 92.5);
             if (EatenWhites.Count > 0)
                 position = 
                     EatenWhites.First()
                     .CanvasPosition
                     .AddVertical(-15)
-                    .NormalizeVertically(normalization);
+                    .NormalizeVertically(eatensColumNormalization);
             disk.CanvasPosition = position;
             EatenWhites.AddFirst(disk);
         }

@@ -6,6 +6,7 @@ using System.Threading;
 using SheshBeshGame.GameDataTypes.DiceRolls;
 using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.Move;
+using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 
 namespace SheshBeshGame.GameDataTypes
 {
@@ -16,7 +17,7 @@ namespace SheshBeshGame.GameDataTypes
 
         public DiceRoller DiceRoller { get; }
         private volatile bool play;
-        public volatile Board Board;
+        public volatile BoardState boardState;
         public volatile GameColor Player;
         private readonly Thread playingThread;
         private Player CurrentPlayer => Player == GameColor.White ? WhitePlayer : BlackPlayer;
@@ -31,7 +32,7 @@ namespace SheshBeshGame.GameDataTypes
             DiceRoller = diceRoller;
             play = startPlaying;
             Player = GameColor.White;
-            Board = Board.StartingBoard;
+            boardState = BoardState.StartingBoardState;
             playingThread = new Thread(PlayGame);
             playingThread.IsBackground = true;
             playingThread.Start();
@@ -47,7 +48,7 @@ namespace SheshBeshGame.GameDataTypes
 
                 SingleGameMove[] optionalMoves = null;
 
-                var chosenMove = CurrentPlayer.ChooseMove(Board, Player, optionalMoves);
+                var chosenMove = CurrentPlayer.ChooseMove(boardState, Player, optionalMoves);
 
                 /*DiceRoller
                     .Roll()

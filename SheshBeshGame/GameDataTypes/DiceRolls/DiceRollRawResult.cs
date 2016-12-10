@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SheshBeshGame.Utils;
 
 namespace SheshBeshGame.GameDataTypes.DiceRolls
 {
@@ -11,8 +10,6 @@ namespace SheshBeshGame.GameDataTypes.DiceRolls
 
         public DiceRollRawResult(int firstRollResult, int secondRollResult)
         {
-            firstRollResult.CheckIfInRangeIncluding(1, 6);
-            secondRollResult.CheckIfInRangeIncluding(1, 6);
             FirstRollResult = firstRollResult;
             SecondRollResult = secondRollResult;
         }

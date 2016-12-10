@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using SheshBeshGame.GameDataTypes;
-using SheshBeshGame.Utils;
+using SheshBeshGame.GameDataTypes.GamePlayer;
+using SheshBeshGame.Utils.GuiUtils;
 
 namespace SheshBeshGame.AppGui.VisualDisk
 {
     public abstract class DiskElement : Shape
     {
-        protected override Geometry DefiningGeometry => Global.GetResource<Geometry>("OuterCircleGeometry");
         public abstract GameColor DiskColor { get; }
         public abstract DrawingBrush DrawingBrush { get; }
+
+        protected override Geometry DefiningGeometry => Global.GetResource<Geometry>("OuterCircleGeometry");
+
         private CanvasPosition canvasPosition = CanvasPosition.CreateTopLeft(0, 0);
 
         public CanvasPosition CanvasPosition

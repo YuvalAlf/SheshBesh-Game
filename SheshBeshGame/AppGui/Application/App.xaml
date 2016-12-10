@@ -1,0 +1,43 @@
+﻿<Application x:Class="SheshBeshGame.AppGui.Application.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AppGui/Window/TitleStyle.xaml"/>
+                <ResourceDictionary Source="/AppGui/Window/WindowBackgroundBrush.xaml"/>
+                
+                <ResourceDictionary Source="/AppGui/Board/Triangles.xaml"/>
+                <ResourceDictionary Source="/AppGui/Board/BoardWood.xaml"/>
+                <ResourceDictionary Source="/AppGui/Board/Ledges.xaml"/>
+                <ResourceDictionary Source="/AppGui/Board/HalfBoardCanvas.xaml"/>
+                <ResourceDictionary Source="/AppGui/Board/BoardCanvas.xaml"/>
+
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/DiskStyle.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/DiskGeometry.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/BlackDiskBrush.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/WhiteDiskBrush.xaml"/>
+              
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Colors.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/One.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Two.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Three.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Four.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Five.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Six.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/Dices.xaml"/>
+
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/DicesAnimations.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Dices/Triggers/MouseUpDown.xaml"/>
+
+                <ResourceDictionary Source="/AppGui/Viewport3D/Light3D.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/ViewportGlowAnimation.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/Viewport3DStyle.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/DiceRollValuesDisplay.xaml"/>
+                <ResourceDictionary Source="/AppGui/Viewport3D/DicesViewport3D.xaml"/>                
+                
+            </ResourceDictionary.MergedDictionaries>
+         </ResourceDictionary>
+    </Application.Resources>
+</Application>

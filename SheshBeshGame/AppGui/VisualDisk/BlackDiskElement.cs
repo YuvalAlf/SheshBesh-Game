@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows.Media;
-using SheshBeshGame.GameDataTypes;
-using SheshBeshGame.Utils;
+﻿using System.Windows.Media;
+using SheshBeshGame.GameDataTypes.GamePlayer;
+using SheshBeshGame.Utils.GuiUtils;
 
 namespace SheshBeshGame.AppGui.VisualDisk
 {

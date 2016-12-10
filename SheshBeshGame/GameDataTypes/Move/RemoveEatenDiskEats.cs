@@ -1,28 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SheshBeshGame.Utils;
+﻿using SheshBeshGame.GameDataTypes.GamePlayer;
+using SheshBeshGame.GameDataTypes.SheshBeshBoard;
+using SheshBeshGame.Utils.DataTypesUtils;
 
 namespace SheshBeshGame.GameDataTypes.Move
 {
     class RemoveEatenDiskEats : SingleGameMove
     {
-        public RemoveEatenDiskEats(int destinationColumn)
-            : base(EatenColumn, destinationColumn)
-        { }
+        public int DestinationColumn { get; }
 
-        public override Board DoMove(Board board)
+        public RemoveEatenDiskEats(int destinationColumn)
         {
-            var newColumns = board.columns.Copy();
+            DestinationColumn = destinationColumn;
+        }
+
+        public override BoardState DoMove(BoardState boardState)
+        {
             var diskColor = EatColumnColor(DestinationColumn);
-            newColumns[DestinationColumn] = newColumns[DestinationColumn].AddDisk();
-            newColumns[DestinationColumn] = newColumns[DestinationColumn].ToColor(diskColor);
-            var eatenWhites = board.eatenWhites - (diskColor == GameColor.White).AsInt();
-            var eatenBlacks = board.eatenBlacks - (diskColor == GameColor.Black).AsInt();
+            var eatenWhites = boardState.eatenWhites - (diskColor == GameColor.White).AsInt();
+            var eatenBlacks = boardState.eatenBlacks - (diskColor == GameColor.Black).AsInt();
             eatenWhites += (diskColor == GameColor.Black).AsInt();
             eatenBlacks += (diskColor == GameColor.White).AsInt();
-            return new Board((byte)eatenWhites, (byte)eatenBlacks, newColumns);
+
+            var newColumns = boardState.columns.Copy();
+            newColumns[DestinationColumn] = newColumns[DestinationColumn].AddDisk();
+            newColumns[DestinationColumn] = newColumns[DestinationColumn].ToColor(diskColor);
+
+            return new BoardState((byte)eatenWhites, (byte)eatenBlacks, newColumns);
         }
     }
 }

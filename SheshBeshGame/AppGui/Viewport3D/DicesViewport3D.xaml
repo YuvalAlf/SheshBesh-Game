@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Viewport3D x:Key="DicesViewport3D" VerticalAlignment="Center" Name="DicesViewport" IsEnabled="False">
+        <Viewport3D.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="0" Opacity="1.0" Color="Black" RenderingBias="Performance"/>
+        </Viewport3D.Effect>
+        <Viewport3D.Style>
+            <Style TargetType="Viewport3D" BasedOn="{StaticResource Viewport3DStyle}">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard Name="GlowBeginStoryboard" Storyboard="{StaticResource ViewportGlowAnimation}"/>
+                        </Trigger.EnterActions>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Trigger.EnterActions>
+                            <RemoveStoryboard BeginStoryboardName="GlowBeginStoryboard"/>
+                        </Trigger.EnterActions>
+                    </Trigger>
+                    <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                        <RemoveStoryboard BeginStoryboardName="GlowBeginStoryboard"/>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Viewport3D.Style>
+        <StaticResource ResourceKey="Light3D"/>
+        <StaticResource ResourceKey="DiceOne"/>
+        <StaticResource ResourceKey="DiceTwo"/>
+
+        <Viewport3D.Resources>
+        </Viewport3D.Resources>
+
+        <Viewport3D.Triggers>
+            <EventTrigger RoutedEvent="Viewport3D.MouseLeftButtonDown">
+                <BeginStoryboard Name="RotateDice1" Storyboard="{StaticResource RotateDice1Storyboard}"/>
+                <BeginStoryboard Name="RotateDice2" Storyboard="{StaticResource RotateDice2Storyboard}"/>
+                <BeginStoryboard Name="RotateDice1Axis" Storyboard="{StaticResource RotateDice1AxisStoryboard}"/>
+                <BeginStoryboard Name="RotateDice2Axis" Storyboard="{StaticResource RotateDice2AxisStoryboard}"/>
+            </EventTrigger>
+           <!-- <EventTrigger RoutedEvent="Viewport3D.MouseLeftButtonUp">
+                <StopStoryboard BeginStoryboardName="RotateDice1" />
+                <StopStoryboard BeginStoryboardName="RotateDice1Axis"/>
+                <StopStoryboard BeginStoryboardName="RotateDice2"/>
+                <StopStoryboard BeginStoryboardName="RotateDice2Axis"/>
+            </EventTrigger>-->
+        </Viewport3D.Triggers>
+    </Viewport3D>
+    
+</ResourceDictionary>

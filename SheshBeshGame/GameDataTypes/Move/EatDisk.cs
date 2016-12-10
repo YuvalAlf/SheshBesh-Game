@@ -1,21 +1,30 @@
-﻿using SheshBeshGame.Utils;
+﻿using SheshBeshGame.GameDataTypes.GamePlayer;
+using SheshBeshGame.GameDataTypes.SheshBeshBoard;
+using SheshBeshGame.Utils.DataTypesUtils;
 
 namespace SheshBeshGame.GameDataTypes.Move
 {
     public sealed class EatDisk : SingleGameMove
     {
-        public EatDisk(int sourceColumn, int destinationColumn)
-            : base(sourceColumn, destinationColumn)
-        { }
+        public int SourceColumn { get; }
+        public int DestinationColumn { get; }
 
-        public override Board DoMove(Board board)
+        public EatDisk(int sourceColumn, int destinationColumn)
         {
-            var newColumns = board.columns.Copy();
+            SourceColumn = sourceColumn;
+            DestinationColumn = destinationColumn;
+        }
+
+        public override BoardState DoMove(BoardState boardState)
+        {
+            var eatenWhites = boardState.eatenWhites + (boardState.columns[DestinationColumn].Color == GameColor.White).AsInt();
+            var eatenBlacks = boardState.eatenBlacks + (boardState.columns[DestinationColumn].Color == GameColor.Black).AsInt();
+
+            var newColumns = boardState.columns.Copy();
             newColumns[SourceColumn] = newColumns[SourceColumn].LessDisk();
             newColumns[DestinationColumn] = newColumns[DestinationColumn].ToColor(newColumns[SourceColumn].Color);
-            var eatenWhites = board.eatenWhites + (board.columns[DestinationColumn].Color == GameColor.White).AsInt();
-            var eatenBlacks = board.eatenBlacks + (board.columns[DestinationColumn].Color == GameColor.Black).AsInt();
-            return new Board((byte)eatenWhites, (byte)eatenBlacks, newColumns);
+
+            return new BoardState((byte)eatenWhites, (byte)eatenBlacks, newColumns);
         }
     }
 }
