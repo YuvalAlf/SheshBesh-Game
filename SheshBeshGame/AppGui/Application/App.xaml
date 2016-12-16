@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/DiskGeometry.xaml"/>
                 <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/BlackDiskBrush.xaml"/>
                 <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/WhiteDiskBrush.xaml"/>
+                <ResourceDictionary Source="/AppGui/VisualDisk/DiskGeometry/ChosenDiskBrush.xaml"/>
               
                 <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/Colors.xaml"/>
                 <ResourceDictionary Source="/AppGui/Viewport3D/Dices/SurfaceBrushes/One.xaml"/>

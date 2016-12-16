@@ -1,14 +1,16 @@
-﻿namespace SheshBeshGame.GameDataTypes.Move
+﻿using SheshBeshGame.Utils.ImmutableList;
+
+namespace SheshBeshGame.GameDataTypes.Move
 {
     public sealed class WholeMove
     {
-        public SingleGameMove[] Moves { get; }
+        public ImList<SingleGameMove> Moves { get; }
 
-        public WholeMove(SingleGameMove[] moves)
+        public WholeMove(ImList<SingleGameMove> moves)
         {
             Moves = moves;
         }
 
-        
+        public override string ToString() => Moves.ToString();
     }
 }

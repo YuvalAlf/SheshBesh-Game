@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SheshBeshGame.Utils.ImmutableList;
 
 namespace SheshBeshGame.GameDataTypes.DiceRolls
 {
@@ -14,18 +15,18 @@ namespace SheshBeshGame.GameDataTypes.DiceRolls
             SecondRollResult = secondRollResult;
         }
 
-        public List<int[]> AllMoveOptions()
+        public ImList<int>[] AllMoveOptions()
         {
             
             if (FirstRollResult == SecondRollResult)
-                return new List<int[]>
+                return new []
                 {
-                    Enumerable.Repeat(FirstRollResult, 4).ToArray()
+                    ImList<int>.Create(Enumerable.Repeat(FirstRollResult, 4))
                 };
-            return new List<int[]>
+            return new []
             {
-                new []{FirstRollResult, SecondRollResult},
-                new []{SecondRollResult, FirstRollResult}
+                ImList<int>.Create(FirstRollResult, SecondRollResult),
+                ImList<int>.Create(SecondRollResult, FirstRollResult)
             };
         }
     }

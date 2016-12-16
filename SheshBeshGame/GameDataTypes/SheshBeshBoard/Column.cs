@@ -24,6 +24,6 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
         public Column ToColor(GameColor newColor) => new Column(NumOfDisks, newColor == GameColor.Black);
 
         public static Column Empty => new Column(0, false);
-        public static IEnumerable<int> All => Enumerable.Range(0, 24);
+        public static IEnumerable<int> AllIndices => Enumerable.Range(0, 24);
     }
 }

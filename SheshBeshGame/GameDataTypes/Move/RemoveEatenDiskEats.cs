@@ -1,10 +1,13 @@
-﻿using SheshBeshGame.GameDataTypes.GamePlayer;
+﻿using System;
+using System.Linq;
+using SheshBeshGame.AppGui.VisualDisk;
+using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 using SheshBeshGame.Utils.DataTypesUtils;
 
 namespace SheshBeshGame.GameDataTypes.Move
 {
-    class RemoveEatenDiskEats : SingleGameMove
+    public sealed class RemoveEatenDiskEats : SingleGameMove
     {
         public int DestinationColumn { get; }
 
@@ -27,5 +30,19 @@ namespace SheshBeshGame.GameDataTypes.Move
 
             return new BoardState((byte)eatenWhites, (byte)eatenBlacks, newColumns);
         }
+        public override DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState)
+        {
+            var diskColor = EatColumnColor(DestinationColumn);
+            switch (diskColor)
+            {
+                case GameColor.White:
+                    return disksVisualState.EatenWhites.First();
+                case GameColor.Black:
+                    return disksVisualState.EatenBlacks.First();
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        public override string ToString() => "Remove eaten to " + DestinationColumn + " and eat";
     }
 }

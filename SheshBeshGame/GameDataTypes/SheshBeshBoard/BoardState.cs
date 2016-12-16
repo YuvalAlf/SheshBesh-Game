@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using SheshBeshGame.GameDataTypes.DiceRolls;
 using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.Move;
 using SheshBeshGame.Utils.DataTypesUtils;
+using static SheshBeshGame.GameDataTypes.GamePlayer.GameColor;
 
 namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
 {
-    public sealed class BoardState
+    public sealed partial class BoardState
     {
         internal readonly byte eatenWhites;
         internal readonly byte eatenBlacks;
@@ -21,68 +20,23 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
             this.columns = columns;
         }
 
-        public BoardState DeepClone() => new BoardState(eatenWhites, eatenBlacks, columns.Copy());
+        public Column this[int index] => columns[index];
 
+        public BoardState DeepClone() => new BoardState(eatenWhites, eatenBlacks, columns.Copy());  
 
-        [Obsolete("Not finished function", false)]
-        public IEnumerable<SingleGameMove> MoveOptions(int diceRoll, GameColor player)
-        {
-            yield break;
-            /*
-            if (EatenDisksExist(player))
-            {
-                var columnIndex = GetColumn(diceRoll - 1, player);
-                var column = columns[columnIndex];
-                if (column.IsEmpty || column.Color == player)
-                    yield return new RemoveEatenDisk(columnIndex);
-            }
-            else
-            {
-                bool diskNotInHome;
-                for (int i = 0; i < columns.Length - 6; i++)
-                {
-                    
-                }
-            }
-                */
-        }
+        public BoardState DoSingleMove(SingleGameMove singleMove) => singleMove.DoMove(this);
 
-        public IEnumerable<WholeMove> MoveOptions(DiceRollRawResult diceRoll, GameColor player)
-        {
-            return null;
-            //  return 
-            //   diceRoll
-            //     .AllMoveOptions()
-            // .Select(moves => moves.Select(m => ))
-        }
+        public BoardState DoWholeMove(WholeMove wholeMove) => wholeMove.Moves.Aggregate(this, (board, move) => board.DoSingleMove(move));
 
-        public BoardState DoSingleMove(SingleGameMove singleMove)
-        {
-            return singleMove.DoMove(this);
-        }
+        public bool EatenDisksExist(GameColor color) => color == White ? eatenWhites > 0 : eatenBlacks > 0;
 
-        public BoardState DoWholeMove(WholeMove wholeMove)
-        {
-            return wholeMove.Moves.Aggregate(this, (board, move) => board.DoSingleMove(move));
-        }
-        public bool EatenDisksExist(GameColor color)
-        {
-            switch (color)
-            {
-                case GameColor.White:
-                    return eatenWhites > 0;
-                case GameColor.Black:
-                    return eatenBlacks > 0;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(color), color, null);
-            }
-        }
+        private int RelativeColumnIndex(GameColor color, int index) => color == Black ? index : 23 - index;
 
         public static BoardState StartingBoardState
         {
             get
             {
-                var columns = new Column[6 * 4];
+                var columns = new Column[6*4];
                 columns[0] = new Column(numOfDisks: 2, isBlack: true);
                 columns[1] = new Column(numOfDisks: 0, isBlack: false);
                 columns[2] = new Column(numOfDisks: 0, isBlack: false);

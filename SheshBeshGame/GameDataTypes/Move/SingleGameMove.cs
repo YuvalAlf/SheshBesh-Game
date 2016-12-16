@@ -1,4 +1,5 @@
 ﻿using System;
+using SheshBeshGame.AppGui.VisualDisk;
 using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 using SheshBeshGame.Utils.DataTypesUtils;
@@ -17,5 +18,7 @@ namespace SheshBeshGame.GameDataTypes.Move
                 return GameColor.White;
             throw new Exception("Eating to illegal cell");
         }
+
+        public abstract DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState);
     }
 }

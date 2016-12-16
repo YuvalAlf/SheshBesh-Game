@@ -3,10 +3,12 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using SheshBeshGame.AppGui.VisualDisk;
 using SheshBeshGame.GameDataTypes.DiceRolls;
 using SheshBeshGame.GameDataTypes.GamePlayer;
+using SheshBeshGame.GameDataTypes.Move;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 using SheshBeshGame.Utils.DataTypesUtils;
 using SheshBeshGame.Utils.GuiUtils;
@@ -61,9 +63,27 @@ namespace SheshBeshGame.AppGui.Application
             Dice1NumberTextBlock.Text = Rnd.Next(1, 7).ToString();
             Dice2NumberTextBlock.Text = Rnd.Next(1, 7).ToString();
 
-          //  WholeMove[] moveOptions = this.BoardState.MoveOptions(DiceRoll, CurrentPlayer).ToArray();
-           // int[] optionalColumns = moveOptions.Select(m => m.Moves[0].SourceColumn).ToArray();
-           // Disks.Where(d => optionalColumns.Contains(d.Column));
+          WholeMove[] moveOptions = this.BoardState.MoveOptions(DiceRoll, CurrentPlayer).ToArray();
+          DiskElement[] sourceDisks = moveOptions.Select(m => m.Moves.First().GetDiskAtSourceColumn(DisksVisualState)).ToArray();
+
+            foreach (var disk in sourceDisks)
+            {
+                ObjectAnimationUsingKeyFrames a = new ObjectAnimationUsingKeyFrames();
+                
+                var keyTime = KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 0, 0));
+                var drawingBrush = Global.GetResource<DrawingBrush>("ChosenDiskBrush");
+                a.KeyFrames.Add(new DiscreteObjectKeyFrame(drawingBrush, keyTime));
+
+
+                var storyBoard = new Storyboard();
+                storyBoard.Children.Add(a);
+                storyBoard.FillBehavior = FillBehavior.HoldEnd;
+                Storyboard.SetTarget(a, disk);
+                Storyboard.SetTargetProperty(a, new PropertyPath("Fill"));
+                storyBoard.Begin(WholeBoardCanvas);
+            }
+          
+          //Disks.Where(d => optionalColumns.Contains(d.Column));
         }
     }
 }

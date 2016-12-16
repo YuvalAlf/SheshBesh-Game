@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SheshBeshGame.Utils.ImmutableList;
 
 namespace SheshBeshGame.Utils.DataTypesUtils
 {
@@ -19,5 +20,12 @@ namespace SheshBeshGame.Utils.DataTypesUtils
                 act.Invoke(item);
         }
 
+        public static ImList<T> ToImList<T>(this IEnumerable<T> @this)
+        {
+            return ImList<T>.Create(@this);
+        }
+
+        public static string MkString<T>(this IEnumerable<T> @this, string seperator, string start = "", string end = "")
+            => @this.ToArray().MkString(seperator, start, end);
     }
 }

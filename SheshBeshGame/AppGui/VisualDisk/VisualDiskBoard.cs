@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Controls;
-using SheshBeshGame.GameDataTypes;
 using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
-using SheshBeshGame.Utils;
 using SheshBeshGame.Utils.GuiUtils;
 using SheshBeshGame.Utils.Math;
 using static SheshBeshGame.Utils.Math.ValueNormalization;
@@ -16,17 +10,17 @@ using static SheshBeshGame.Utils.Math.ValueNormalization;
 namespace SheshBeshGame.AppGui.VisualDisk
 {
     // TODO: ZIndex!!
-    class VisualDiskBoard
+    public sealed class VisualDiskBoard
     {
         private Canvas Canvas { get; set; }
-        private Dictionary<int, LinkedList<DiskElement>> DisksAtColumn { get; }
-        private LinkedList<DiskElement> EatenBlacks { get; }
-        private LinkedList<DiskElement> EatenWhites { get; }
+        internal Dictionary<int, LinkedList<DiskElement>> DisksAtColumn { get; }
+        internal LinkedList<DiskElement> EatenBlacks { get; }
+        internal LinkedList<DiskElement> EatenWhites { get; }
 
         public VisualDiskBoard()
         {
             DisksAtColumn = new Dictionary<int, LinkedList<DiskElement>>();
-            foreach (int columnIndex in Column.All)
+            foreach (int columnIndex in Column.AllIndices)
                 DisksAtColumn.Add(columnIndex, new LinkedList<DiskElement>());
             EatenBlacks = new LinkedList<DiskElement>();
             EatenWhites = new LinkedList<DiskElement>();
@@ -35,7 +29,7 @@ namespace SheshBeshGame.AppGui.VisualDisk
         public void ApplyBoard(BoardState boardState, Canvas canvas)
         {
             this.Canvas = canvas;
-            foreach (int columnIndex in Column.All)
+            foreach (int columnIndex in Column.AllIndices)
             {
                 var column = boardState.columns[columnIndex];
                 for (int i = 0; i < column.NumOfDisks; i++)

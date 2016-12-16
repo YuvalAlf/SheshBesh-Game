@@ -1,4 +1,6 @@
-﻿using SheshBeshGame.GameDataTypes.SheshBeshBoard;
+﻿using System.Linq;
+using SheshBeshGame.AppGui.VisualDisk;
+using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 
 namespace SheshBeshGame.GameDataTypes.Move
 {
@@ -21,5 +23,10 @@ namespace SheshBeshGame.GameDataTypes.Move
             newBoard.columns[DestinationColumn] = newBoard.columns[DestinationColumn].ToColor(newBoard.columns[SourceColumn].Color);
             return newBoard;
         }
+        public override DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState)
+        {
+            return disksVisualState.DisksAtColumn[SourceColumn].First();
+        }
+        public override string ToString() => "Move " + SourceColumn + " to " + DestinationColumn;
     }
 }

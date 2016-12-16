@@ -1,4 +1,6 @@
-﻿using SheshBeshGame.GameDataTypes.GamePlayer;
+﻿using System.Linq;
+using SheshBeshGame.AppGui.VisualDisk;
+using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 using SheshBeshGame.Utils.DataTypesUtils;
 
@@ -26,5 +28,11 @@ namespace SheshBeshGame.GameDataTypes.Move
 
             return new BoardState((byte)eatenWhites, (byte)eatenBlacks, newColumns);
         }
+
+        public override DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState)
+        {
+            return disksVisualState.DisksAtColumn[SourceColumn].First();
+        }
+        public override string ToString() => "Eat disk at " + DestinationColumn + " from " + SourceColumn;
     }
 }
