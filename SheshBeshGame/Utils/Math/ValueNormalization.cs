@@ -16,8 +16,7 @@
                     return valueMapper.To;
             return value;
         }
-
-        public sealed class ValueMapping
+        public struct ValueMapping
         {
             public double From { get; }
             public double To { get; }

@@ -31,7 +31,7 @@ namespace SheshBeshGame.AppGui.VisualDisk
             this.Canvas = canvas;
             foreach (int columnIndex in Column.AllIndices)
             {
-                var column = boardState.columns[columnIndex];
+                var column = boardState[columnIndex];
                 for (int i = 0; i < column.NumOfDisks; i++)
                 {
                     var disk = DiskElement.Create(column.Color);
@@ -39,13 +39,13 @@ namespace SheshBeshGame.AppGui.VisualDisk
                     canvas.Children.Add(disk);
                 }
             }
-            for (int i = 0; i < boardState.eatenBlacks; i++)
+            for (int i = 0; i < boardState.EatenBlacks; i++)
             {
                 var disk = DiskElement.Create(GameColor.Black);
                 this.AddDiskToBlackEatens(disk);
                 canvas.Children.Add(disk);
             }
-            for (int i = 0; i < boardState.eatenWhites; i++)
+            for (int i = 0; i < boardState.EatenWhites; i++)
             {
                 var disk = DiskElement.Create(GameColor.White);
                 this.AddDiskToWhiteEatens(disk);

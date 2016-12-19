@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using SheshBeshGame.AppGui.VisualDisk;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
-using SheshBeshGame.Utils.DataTypesUtils;
 
 namespace SheshBeshGame.GameDataTypes.Move
 {
@@ -16,9 +15,10 @@ namespace SheshBeshGame.GameDataTypes.Move
 
         public override BoardState DoMove(BoardState boardState)
         {
-            var newBoard = boardState.DeepClone();
-            newBoard.columns[SourceColumn] = newBoard.columns[SourceColumn].LessDisk();
-            return newBoard;
+            return boardState
+                .CloneToBuilder()
+                .LessDiskAt(SourceColumn)
+                .ToBoardState();
         }
 
         public override DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState)

@@ -18,15 +18,12 @@ namespace SheshBeshGame.GameDataTypes.Move
 
         public override BoardState DoMove(BoardState boardState)
         {
-            var diskColor = EatColumnColor(DestinationColumn);
-            var eatenWhites = boardState.eatenWhites - (diskColor == GameColor.White).AsInt();
-            var eatenBlacks = boardState.eatenBlacks - (diskColor == GameColor.Black).AsInt();
-
-            var newColumns = boardState.columns.Copy();
-            newColumns[DestinationColumn] = newColumns[DestinationColumn].AddDisk();
-            newColumns[DestinationColumn] = newColumns[DestinationColumn].ToColor(diskColor);
-
-            return new BoardState((byte)eatenWhites, (byte)eatenBlacks, newColumns);
+            return boardState
+                .CloneToBuilder()
+                .LessEatenTo(EatColumnColor(DestinationColumn))
+                .AddDiskAt(DestinationColumn)
+                .ToColorAt(DestinationColumn, EatColumnColor(DestinationColumn))
+                .ToBoardState();
         }
         public override DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState)
         {

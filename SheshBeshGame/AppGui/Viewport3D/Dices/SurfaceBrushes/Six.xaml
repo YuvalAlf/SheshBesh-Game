@@ -63,5 +63,5 @@
         </MeshGeometry3D.TextureCoordinates>
     </MeshGeometry3D>
 
-    <GeometryModel3D x:Key="SixSurface" Geometry="{StaticResource SixGeometry}" Material="{StaticResource SixMaterial}"/>
+    <GeometryModel3D x:Name="Six" x:Key="SixSurface" Geometry="{StaticResource SixGeometry}" Material="{StaticResource SixMaterial}"/>
 </ResourceDictionary>

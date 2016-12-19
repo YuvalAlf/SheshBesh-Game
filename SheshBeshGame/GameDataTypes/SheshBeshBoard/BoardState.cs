@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using SheshBeshGame.GameDataTypes.GamePlayer;
 using SheshBeshGame.GameDataTypes.Move;
 using SheshBeshGame.Utils.DataTypesUtils;
@@ -9,45 +8,44 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
 {
     public sealed partial class BoardState
     {
-        internal readonly byte eatenWhites;
-        internal readonly byte eatenBlacks;
-        internal readonly Column[] columns;
+        public byte EatenWhites { get; }
+        public byte EatenBlacks { get; }
+        private Column[] Columns { get; }
 
-        internal BoardState(byte eatenWhites, byte eatenBlacks, Column[] columns)
+        public BoardState(byte eatenWhites, byte eatenBlacks, Column[] columns)
         {
-            this.eatenWhites = eatenWhites;
-            this.eatenBlacks = eatenBlacks;
-            this.columns = columns;
+            this.EatenWhites = eatenWhites;
+            this.EatenBlacks = eatenBlacks;
+            this.Columns = columns;
         }
 
-        public Column this[int index] => columns[index];
+        public Column this[int index] => Columns[index];
 
-        public BoardState DeepClone() => new BoardState(eatenWhites, eatenBlacks, columns.Copy());  
+        public BoardStateBuilder CloneToBuilder() => new BoardStateBuilder(EatenWhites, EatenBlacks, Columns.Copy());  
 
         public BoardState DoSingleMove(SingleGameMove singleMove) => singleMove.DoMove(this);
 
         public BoardState DoWholeMove(WholeMove wholeMove) => wholeMove.Moves.Aggregate(this, (board, move) => board.DoSingleMove(move));
 
-        public bool EatenDisksExist(GameColor color) => color == White ? eatenWhites > 0 : eatenBlacks > 0;
+        public bool EatenDisksExist(GameColor color) => color == White ? EatenWhites > 0 : EatenBlacks > 0;
 
-        private int RelativeColumnIndex(GameColor color, int index) => color == Black ? index : 23 - index;
 
         public static BoardState StartingBoardState
         {
             get
             {
                 var columns = new Column[6*4];
-                columns[0] = new Column(numOfDisks: 2, isBlack: true);
-                columns[1] = new Column(numOfDisks: 0, isBlack: false);
-                columns[2] = new Column(numOfDisks: 0, isBlack: false);
-                columns[3] = new Column(numOfDisks: 0, isBlack: false);
-                columns[4] = new Column(numOfDisks: 0, isBlack: false);
-                columns[5] = new Column(numOfDisks: 5, isBlack: false);
+                columns[0] =  new Column(numOfDisks: 2, isBlack: true);
+                columns[1] =  new Column(numOfDisks: 0, isBlack: false);
+                columns[2] =  new Column(numOfDisks: 0, isBlack: false);
+                columns[3] =  new Column(numOfDisks: 0, isBlack: false);
+                columns[4] =  new Column(numOfDisks: 0, isBlack: false);
+                columns[5] =  new Column(numOfDisks: 5, isBlack: false);
 
-                columns[6] = new Column(numOfDisks: 0, isBlack: false);
-                columns[7] = new Column(numOfDisks: 3, isBlack: false);
-                columns[8] = new Column(numOfDisks: 0, isBlack: false);
-                columns[9] = new Column(numOfDisks: 0, isBlack: false);
+                columns[6] =  new Column(numOfDisks: 0, isBlack: false);
+                columns[7] =  new Column(numOfDisks: 3, isBlack: false);
+                columns[8] =  new Column(numOfDisks: 0, isBlack: false);
+                columns[9] =  new Column(numOfDisks: 0, isBlack: false);
                 columns[10] = new Column(numOfDisks: 0, isBlack: false);
                 columns[11] = new Column(numOfDisks: 5, isBlack: true);
 

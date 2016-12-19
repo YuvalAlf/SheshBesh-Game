@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <DoubleAnimation x:Key="RotationAnimation" From="0" To="360" Duration="0:0:0.021" RepeatBehavior="Forever"/>
-    
-    <Vector3DAnimationUsingKeyFrames x:Key="AxisVectorRotationAnimation1" AutoReverse="True" RepeatBehavior="Forever">
+    <DoubleAnimation x:Key="RotationAnimation" From="0" To="360" Duration="0:0:0.97478" RepeatBehavior="Forever" IsAdditive="True"/>
+
+    <Vector3DAnimationUsingKeyFrames x:Key="AxisVectorRotationAnimation1" AutoReverse="True" RepeatBehavior="Forever" IsAdditive="True">
         <Vector3DAnimationUsingKeyFrames.KeyFrames>
             
             <LinearVector3DKeyFrame KeyTime="0:0:0">

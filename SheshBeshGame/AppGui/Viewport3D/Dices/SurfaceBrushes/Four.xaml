@@ -50,5 +50,5 @@
         </MeshGeometry3D.TextureCoordinates>
     </MeshGeometry3D>
 
-    <GeometryModel3D x:Key="FourSurface" Geometry="{StaticResource FourGeometry}" Material="{StaticResource FourMaterial}"/>
+    <GeometryModel3D x:Name="Four" x:Key="FourSurface" Geometry="{StaticResource FourGeometry}" Material="{StaticResource FourMaterial}"/>
 </ResourceDictionary>

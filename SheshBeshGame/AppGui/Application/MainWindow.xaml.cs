@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 using SheshBeshGame.AppGui.VisualDisk;
 using SheshBeshGame.GameDataTypes.DiceRolls;
 using SheshBeshGame.GameDataTypes.GamePlayer;
@@ -12,27 +13,29 @@ using SheshBeshGame.GameDataTypes.Move;
 using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 using SheshBeshGame.Utils.DataTypesUtils;
 using SheshBeshGame.Utils.GuiUtils;
+using SysViewport3D = System.Windows.Controls.Viewport3D;
 
 namespace SheshBeshGame.AppGui.Application
 {
-    partial class MainWindow : Window
+    public partial class MainWindow : Window
     {
         private TextBlock Dice1NumberTextBlock => Global.GetResource<TextBlock>("Dice1NumberTextBlock");
         private TextBlock Dice2NumberTextBlock => Global.GetResource<TextBlock>("Dice2NumberTextBlock");
-        private Viewport3D DicesViewport => Global.GetResource<Viewport3D>("DicesViewport3D");
-        private Random Rnd { get; } = new Random();
+        private SysViewport3D DicesViewport => Global.GetResource<SysViewport3D>("DicesViewport3D");
         private VisualDiskBoard DisksVisualState { get; } = new VisualDiskBoard();
         private BoardState BoardState { get; set; } = BoardState.StartingBoardState;
-
-        private int Dice1Result => int.Parse(Dice1NumberTextBlock.Text);
-        private int Dice2Result => int.Parse(Dice2NumberTextBlock.Text);
-        private DiceRollRawResult DiceRoll => new DiceRollRawResult(Dice1Result, Dice2Result);
+        private DiceRollRawResult DiceRoll => DiceRoller.Roll();
+        private DiceRoller DiceRoller { get; }
         private GameColor CurrentPlayer { get; set; } = GameColor.White;
+        private ModelVisual3D DiceOne => DicesViewport.Children[1] as ModelVisual3D;
+        private ModelVisual3D DiceTwo => DicesViewport.Children[2] as ModelVisual3D;
+        private PerspectiveCamera Camera => DicesViewport.Camera as PerspectiveCamera;
 
 
         public MainWindow()
         {
             InitializeComponent();
+            this.DiceRoller = new Cubes3DRoller(Camera, DiceOne, DiceTwo);
             this.DicesViewport.MouseLeftButtonDown += OnViewport3DMouseLeftButtonDown;
             this.DicesViewport.MouseLeftButtonUp += OnViewport3DMouseLeftButtonUp;
 
@@ -60,8 +63,8 @@ namespace SheshBeshGame.AppGui.Application
                 .Cast<BeginStoryboard>()
                 .Iter(b =>  b.Storyboard.Pause(DicesViewport));
             
-            Dice1NumberTextBlock.Text = Rnd.Next(1, 7).ToString();
-            Dice2NumberTextBlock.Text = Rnd.Next(1, 7).ToString();
+            Dice1NumberTextBlock.Text = DiceRoll.FirstRollResult.ToString();
+            Dice2NumberTextBlock.Text = DiceRoll.SecondRollResult.ToString();
 
           WholeMove[] moveOptions = this.BoardState.MoveOptions(DiceRoll, CurrentPlayer).ToArray();
           DiskElement[] sourceDisks = moveOptions.Select(m => m.Moves.First().GetDiskAtSourceColumn(DisksVisualState)).ToArray();
@@ -80,7 +83,7 @@ namespace SheshBeshGame.AppGui.Application
                 storyBoard.FillBehavior = FillBehavior.HoldEnd;
                 Storyboard.SetTarget(a, disk);
                 Storyboard.SetTargetProperty(a, new PropertyPath("Fill"));
-                storyBoard.Begin(WholeBoardCanvas);
+                storyBoard.Begin();
             }
           
           //Disks.Where(d => optionalColumns.Contains(d.Column));

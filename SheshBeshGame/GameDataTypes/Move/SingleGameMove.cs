@@ -9,6 +9,7 @@ namespace SheshBeshGame.GameDataTypes.Move
     public abstract class SingleGameMove
     {
         public abstract BoardState DoMove(BoardState boardState);
+        public abstract DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState);
 
         protected static GameColor EatColumnColor(int column)
         {
@@ -18,7 +19,5 @@ namespace SheshBeshGame.GameDataTypes.Move
                 return GameColor.White;
             throw new Exception("Eating to illegal cell");
         }
-
-        public abstract DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState);
     }
 }

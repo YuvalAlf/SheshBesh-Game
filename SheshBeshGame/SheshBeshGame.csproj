@@ -57,10 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppGui\Application\GuiGamePlay.cs" />
+    <Compile Include="AppGui\Viewport3D\Dices\SurfaceBrushes\DiceSurface.cs" />
     <Compile Include="AppGui\VisualDisk\DiskElement.cs" />
     <Compile Include="AppGui\VisualDisk\BlackDiskElement.cs" />
     <Compile Include="AppGui\VisualDisk\VisualDiskBoard.cs" />
     <Compile Include="AppGui\VisualDisk\WhiteDiskElement.cs" />
+    <Compile Include="GameDataTypes\SheshBeshBoard\BoardStateBuilder.cs" />
+    <Compile Include="GameDataTypes\DiceRolls\Cubes3DRoller.cs" />
     <Compile Include="GameDataTypes\GameStatus.cs" />
     <Compile Include="GameDataTypes\SheshBeshBoard\BoardState.cs" />
     <Compile Include="GameDataTypes\SheshBeshBoard\BoardStateGameLogic.cs" />
@@ -85,7 +89,9 @@
     <Compile Include="Utils\GuiUtils\CanvasPosition.cs" />
     <Compile Include="Utils\DataTypesUtils\EnumrableExtensions.cs" />
     <Compile Include="Utils\DataTypesUtils\IntExtensions.cs" />
+    <Compile Include="Utils\GuiUtils\ThreeDUtils.cs" />
     <Compile Include="Utils\ImmutableList\ImList.cs" />
+    <Compile Include="Utils\Math\ThreeDMath.cs" />
     <Compile Include="Utils\Math\ValueNormalization.cs" />
     <Compile Include="Utils\OptionUtil\NoneOption.cs" />
     <Compile Include="Utils\OptionUtil\NoneOptionExceptioncs.cs" />

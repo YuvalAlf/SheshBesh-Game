@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using SheshBeshGame.GameDataTypes.DiceRolls;
 using SheshBeshGame.GameDataTypes.GamePlayer;
@@ -10,6 +7,7 @@ using SheshBeshGame.GameDataTypes.SheshBeshBoard;
 
 namespace SheshBeshGame.GameDataTypes
 {
+    [Obsolete("Class not complete", true)]
     public sealed class GameEngine
     {
         private Player WhitePlayer { get; }

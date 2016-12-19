@@ -22,8 +22,7 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
         public Column AddDisk() => new Column((byte)(NumOfDisks + 1), IsBlack);
         public Column LessDisk() => new Column((byte)(NumOfDisks - 1), IsBlack);
         public Column ToColor(GameColor newColor) => new Column(NumOfDisks, newColor == GameColor.Black);
-
-        public static Column Empty => new Column(0, false);
+        
         public static IEnumerable<int> AllIndices => Enumerable.Range(0, 24);
     }
 }

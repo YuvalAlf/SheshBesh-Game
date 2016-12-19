@@ -17,11 +17,12 @@ namespace SheshBeshGame.GameDataTypes.Move
 
         public override BoardState DoMove(BoardState boardState)
         {
-            var newBoard = boardState.DeepClone();
-            newBoard.columns[SourceColumn] = newBoard.columns[SourceColumn].LessDisk();
-            newBoard.columns[DestinationColumn] = newBoard.columns[DestinationColumn].AddDisk();
-            newBoard.columns[DestinationColumn] = newBoard.columns[DestinationColumn].ToColor(newBoard.columns[SourceColumn].Color);
-            return newBoard;
+            return boardState
+                .CloneToBuilder()
+                .LessDiskAt(SourceColumn)
+                .AddDiskAt(DestinationColumn)
+                .ToColorAt(DestinationColumn, boardState[SourceColumn].Color)
+                .ToBoardState();
         }
         public override DiskElement GetDiskAtSourceColumn(VisualDiskBoard disksVisualState)
         {

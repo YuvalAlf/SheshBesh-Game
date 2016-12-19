@@ -24,7 +24,7 @@ namespace SheshBeshGame.Utils.ImmutableList
         }
         public static ImList<T> Create(params T[] values) => Create(Enumerable.AsEnumerable(values));
 
-        public static ImList<T> Nil => new NilList();
+        public static ImList<T> Nil { get; } = new NilList(); 
         public static ImList<T> Cons(T head, ImList<T> tail) => new ConsList(head, tail);
 
 

@@ -7,14 +7,14 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="2"/>
     </Style>
-    <TextBlock x:Key="Dice1NumberTextBlock" Style="{StaticResource DicesTextBlockStyle}" Text="5"/>
+    <TextBlock x:Key="Dice2NumberTextBlock" Style="{StaticResource DicesTextBlockStyle}" Text="5"/>
     <TextBlock x:Key="SpaceTextBlock"       Style="{StaticResource DicesTextBlockStyle}" Text="       "/>
-    <TextBlock x:Key="Dice2NumberTextBlock" Style="{StaticResource DicesTextBlockStyle}" Text="1"/>
+    <TextBlock x:Key="Dice1NumberTextBlock" Style="{StaticResource DicesTextBlockStyle}" Text="1"/>
 
 
     <StackPanel x:Key="DiceRollValuesDisplay" Orientation="Horizontal" Margin="0,10,0,0"  HorizontalAlignment="Center">
-        <StaticResource ResourceKey="Dice1NumberTextBlock"/>
-        <StaticResource ResourceKey="SpaceTextBlock"/>
         <StaticResource ResourceKey="Dice2NumberTextBlock"/>
+        <StaticResource ResourceKey="SpaceTextBlock"/>
+        <StaticResource ResourceKey="Dice1NumberTextBlock"/>
     </StackPanel>
 </ResourceDictionary>

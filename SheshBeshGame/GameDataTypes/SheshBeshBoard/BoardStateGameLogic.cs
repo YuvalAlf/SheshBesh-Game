@@ -13,7 +13,7 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
         {
             if (this.EatenDisksExist(player))
             {
-                int destinationColumnIndex = RelativeColumnIndex(player, diceRoll);
+                int destinationColumnIndex = player.RelativeColumnIndex(diceRoll);
                 var destinationColumn = this[destinationColumnIndex];
                 if (destinationColumn.Color == player || destinationColumn.IsEmpty)
                     yield return new RemoveEatenDisk(destinationColumnIndex);
@@ -25,12 +25,12 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
                 bool canAquit = true;
                 for (int columnIndex = 0; columnIndex <= 23 - diceRoll; columnIndex++)
                 {
-                    int sourceColumnIndex = RelativeColumnIndex(player, columnIndex);
+                    int sourceColumnIndex = player.RelativeColumnIndex(columnIndex);
                     var sourceColumn = this[sourceColumnIndex];
                     if (sourceColumn.NumOfDisks > 0 && sourceColumn.Color == player)
                     {
                         canAquit = false;
-                        int destinationColumnIndex = RelativeColumnIndex(player, columnIndex + diceRoll);
+                        int destinationColumnIndex = player.RelativeColumnIndex(columnIndex + diceRoll);
                         var destinationColumn = this[destinationColumnIndex];
                         if (destinationColumn.IsEmpty || destinationColumn.Color == player)
                             yield return new RegularMove(sourceColumnIndex, destinationColumnIndex);
@@ -43,7 +43,7 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
                     int columnIndex = 24 - diceRoll;
                     while (true)
                     {
-                        int relativeColumn = RelativeColumnIndex(player, columnIndex);
+                        int relativeColumn = player.RelativeColumnIndex(columnIndex);
                         var column = this[relativeColumn];
                         if (column.NumOfDisks > 0 && column.Color == player)
                         {
@@ -79,7 +79,7 @@ namespace SheshBeshGame.GameDataTypes.SheshBeshBoard
         {
             bool blackExist = false;
             bool whiteExist = false;
-            foreach (var column in columns)
+            foreach (var column in this.Columns)
                 if (column.NumOfDisks > 0)
                     if (column.IsWhite)
                         whiteExist = true;

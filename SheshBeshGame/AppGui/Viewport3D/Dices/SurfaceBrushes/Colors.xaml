@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <GeometryDrawing x:Key="BackgroundRectGeometry" Brush="#FFA06B3E">
+    <GeometryDrawing x:Key="BackgroundRectGeometry">
+        <GeometryDrawing.Brush>
+            <SolidColorBrush Color="#FFA06B3E"/>
+        </GeometryDrawing.Brush>
         <GeometryDrawing.Pen>
             <Pen Brush="#FF301A04" Thickness="0.01"/>
         </GeometryDrawing.Pen>

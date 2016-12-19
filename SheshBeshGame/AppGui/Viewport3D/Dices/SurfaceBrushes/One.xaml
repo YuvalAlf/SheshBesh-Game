@@ -18,7 +18,7 @@
         </DiffuseMaterial.Brush>
     </DiffuseMaterial>
 
-    <MeshGeometry3D x:Key="OneGeometry"  TriangleIndices="1,3,0 2,0,3">
+    <MeshGeometry3D x:Key="OneGeometry" TriangleIndices="1,3,0 2,0,3">
         <MeshGeometry3D.Positions>
             <Point3D X="0" Y="1" Z="0"/>
             <Point3D X="0" Y="1" Z="1"/>
@@ -33,5 +33,5 @@
         </MeshGeometry3D.TextureCoordinates>
     </MeshGeometry3D>
 
-    <GeometryModel3D x:Key="OneSurface" Geometry="{StaticResource OneGeometry}" Material="{StaticResource OneMaterial}"/>
+    <GeometryModel3D x:Name="One" x:Key="OneSurface" Geometry="{StaticResource OneGeometry}" Material="{StaticResource OneMaterial}"/>
 </ResourceDictionary>

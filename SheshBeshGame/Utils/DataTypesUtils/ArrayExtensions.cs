@@ -27,5 +27,18 @@ namespace SheshBeshGame.Utils.DataTypesUtils
 
             return str.ToString();
         }
+        public static T MinBy<T, S>(this T[] @this, Func<T, S> by)
+            where S : IComparable<S>
+        {
+            T minItem = @this[0];
+            S minValue = by(minItem);
+            for (int i = 1; i < @this.Length; i++)
+                if (by(@this[i]).CompareTo(minValue) < 0)
+                {
+                    minItem = @this[i];
+                    minValue = by(@this[i]);
+                }
+            return minItem;
+        }
     }
 }
